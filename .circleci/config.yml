@@ -1,0 +1,28 @@
+version: 2
+jobs:
+  build:
+    docker:
+      - image: circleci/node:8
+    environment:
+      SCREENSHOT_TARGET: "build/test/screenshot"
+    steps:
+      - checkout
+      - restore_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+      - run:
+          name: Store Service Account
+          command: echo $GAE_DEPLOY_KEY | base64 -d > ${HOME}/gcloud-service-key.json
+      - run:
+          name: Workaround for GoogleChrome/puppeteer#290
+          command: 'sh .circleci/setup_puppeteer.sh'
+      - run: npm install
+      - save_cache:
+          key: dependency-cache-{{ checksum "package.json" }}
+          paths:
+            - node_modules
+      - run: npm run test
+      - run:
+          command: |
+            export SCREENSHOT_ACTUAL_KEY=${CIRCLE_BRANCH}-${CIRCLE_SHA1}
+            export GOOGLE_APPLICATION_CREDENTIALS=${HOME}/gcloud-service-key.json
+            npm run reg-suit

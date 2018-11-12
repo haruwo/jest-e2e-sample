@@ -1,0 +1,22 @@
+{
+  "name": "jest-e2e-sample",
+  "engines": {
+    "node": ">=8.0"
+  },
+  "private": true,
+  "scripts": {
+    "test": "jest",
+    "reg-suit": "reg-suit run"
+  },
+  "devDependencies": {
+    "fs-extra": "^7.0.0",
+    "jest": "^23.5.0",
+    "jest-puppeteer": "^3.3.1",
+    "puppeteer": "^1.7.0",
+    "reg-keygen-git-hash-plugin": "^0.7.6",
+    "reg-notify-github-plugin": "^0.7.6",
+    "reg-publish-gcs-plugin": "^0.7.6",
+    "reg-simple-keygen-plugin": "^0.7.5",
+    "reg-suit": "^0.7.14"
+  }
+}

@@ -1,0 +1,17 @@
+{
+  "core": {
+    "workingDir": ".reg",
+    "actualDir": "build/test/screenshot",
+    "threshold": 0,
+    "thresholdRate": 0,
+    "ximgdiff": {
+      "invocationType": "client"
+    }
+  },
+  "plugins": {
+    "reg-simple-keygen-plugin": {
+      "expectedKey": "${SCREENSHOT_EXPECTED_KEY}",
+      "actualKey": "${SCREENSHOT_ACTUAL_KEY}"
+    }
+  }
+}
